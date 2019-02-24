@@ -1,0 +1,25 @@
+/* general */
+/* @import url("reset.css"); */
+
+#oneArtcl{
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  clear: both;;
+}
+ #imgArtcl{
+  width: 40%;
+  float: left;
+  /* border: 2px solid green; */
+  /* width: 200px;
+  height: 250px;
+  margin-top: 10px;
+  margin-right: 25px; */
+} 
+#infoArtcl{
+  height: 150px;
+  float: left;
+  width: 49%;
+  /* border: 2px solid blueviolet; */
+ 
+}
