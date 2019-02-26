@@ -65,11 +65,10 @@ $(document).on("click","#saveArtcl", function(){
 //save article
 $("#saved").on("click", function(){
   $("#articles").empty();
+
   $.get("/savedartcl", function(newsData) {
-  console.log(newsData)
+  console.log(newsData);
   articleTemplate(newsData);
   });
 });
     
-
-
