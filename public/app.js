@@ -70,6 +70,6 @@ $("#saved").on("click", function(){
   articleTemplate(newsData);
   });
 });
-
     
+
 
