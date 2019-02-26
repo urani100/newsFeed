@@ -1,20 +1,30 @@
 /* general */
 /* @import url("reset.css"); */
-
-#oneArtcl{
-  width: 100%;
+header{
   max-width: 980px;
   margin: 0 auto;
-  clear: both;;
+  color: #E0E0E0;
+  border: 2px solid #E0E0E0; 
+  text-align: left;
+}
+#title{
+  margin: 10px;
+}
+#btn{
+  margin: 10px;
+}
+#oneArtcl{
+  /* width: 100%; */
+  max-width: 980px;
+  max-height: 100;
+  margin: 0 auto;
+  clear: both; 
+  border: 2px solid #E0E0E0; 
 }
  #imgArtcl{
   width: 40%;
   float: left;
-  /* border: 2px solid green; */
-  /* width: 200px;
-  height: 250px;
   margin-top: 10px;
-  margin-right: 25px; */
 } 
 #infoArtcl{
   height: 150px;

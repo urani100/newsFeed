@@ -31,27 +31,11 @@ app.use(express.static("public"));
 mongoose.connect("mongodb://localhost/newsFeed", { useNewUrlParser: true });
 
 var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
-// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-// app.set("view engine", "handlebars");
 
-
-var hbs = exphbs.create({
-  defaultLayout: 'main',
-
-  // Uses multiple partials dirs, templates in "shared/templates/" are shared
-  // with the client-side of the app (see below).
-  partialsDir: [  
-      'views/partials/'
-  ]
-});
-
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-//////////////////////////////////////////////////
 var results = [];
-
-
 // Routes
 app.get("/", function(req, res) {
   res.render("index");
@@ -66,13 +50,14 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // grab every elements within article tag
-    $("div .homepage-wrap article").each(function(i, el) {
-     
+    $("div .homepage-wrap article").each(function(i, el) { 
       var title = $(el).find("h2").text();
       var link = $(el).find("a").attr("href");
       var excerpt = $(el).find("div .card-subhead").text();
       var author = $(el).find("h3 :nth-child(2)").text();
       var image = $(el).find("a").find("div :nth-child(1)").css();
+      var article_id = link.replace(/[^0-9]/g, "");
+
      //push objects in array
       results.push(
         {
@@ -80,7 +65,8 @@ app.get("/scrape", function(req, res) {
           link:link,
           excerpt:excerpt,
           author:author,
-          image:image["background-image"].replace("url(//", "").replace(")", "")
+          image:image["background-image"].replace("url(//", "").replace(")", ""),
+          article_id: article_id
         }
       );
   });
@@ -90,26 +76,100 @@ app.get("/scrape", function(req, res) {
 });
 
 
+// Route for saving/updating an Article's 
+app.post("/submit/:id", function(req, res) {
+  db.Article.create(req.body)
+    .then(function(dbNote) {
+      console.log(dbNote);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
 
 
-//image:image['background-image'].replace('url(//' , '').replace(')' , '')
 
-//render all elements from scrape in index page
-   
-    // image['background-image'].replace('url(//' , '').replace(')' , '')
-      
-      // Create a new Article using the `result` object built from scraping
-      // db.Article.create(result)
-      //   .then(function(dbArticle) {
-      //     // View the added result in the console
-      //     console.log(dbArticle);
-      //   })
-      //   .catch(function(err) {
-      //     // If an error occurred, log it
-      //     console.log(err);
-      //   });
-      // console.log(result);
-    //});
+//saving article
+app.get("/savedartcl", function(req, res) {
+  db.Article.find({})
+      .then(function(dbArticle) {
+        // If we were able to successfully find Articles, send them back to the client
+        res.json(dbArticle);
+      })
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////
+
+
+// app.get("/savedartcl", function(req, res) {
+// 	Article.find({artclsaved: true},  function(err, result) {
+// 		if(result.length === 0) {
+// 			res.render("noArticle", {message: "You have no articles saved"});
+// 		}
+// 		else {
+// 			res.render("articles", {saved: result});
+// 		}
+// 	});
+// });
+// app.get("/articles", function(req, res) {
+//   // get  from collection database
+//   db.Article.find({})
+//     .then(function(dbArticle) {
+//       // If we were able to successfully find Articles, send them back to the client
+//       res.json(dbArticle);
+//     })
+//     .catch(function(err) {
+//       // If an error occurred, send it to the client
+//       res.json(err);
+//     });
+// });
+
+// Create a new Article using the `result` object built from scraping
+// db.Article.create(result)
+//   .then(function(dbArticle) {
+//     // View the added result in the console
+//     console.log(dbArticle);
+//   })
+//   .catch(function(err) {
+//     // If an error occurred, log it
+//     console.log(err);
+//   });
+// console.log(result);
+//});
 
 //Route for getting all Articles from the db
 // app.get("/articles", function(req, res) {
@@ -141,26 +201,7 @@ app.get("/scrape", function(req, res) {
 //     });
 // });
 
-// // Route for saving/updating an Article's associated Note
-// app.post("/articles/:id", function(req, res) {
-//   // Create a new note and pass the req.body to the entry
-//   db.Note.create(req.body)
-//     .then(function(dbNote) {
-//       // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. 
-//       //Update the Article to be associated with the new Note
-//       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
-//       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-//       return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
-//     })
-//     .then(function(dbArticle) {
-//       // If we were able to successfully update an Article, send it back to the client
-//       res.json(dbArticle);
-//     })
-//     .catch(function(err) {
-//       // If an error occurred, send it to the client
-//       res.json(err);
-//     });
-// });
+
 
 // Start the server
 app.listen(PORT, function() {
