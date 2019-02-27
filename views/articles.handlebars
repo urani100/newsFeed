@@ -7,11 +7,13 @@
         <a href="{{this.link}}" target="_blank"> Read Full Article </a>
         <button id="addNote" data-id="{{this._id}}">Add Notes To Article</button>
         <form action="/savedartcl/{{this._id}}" method="GET"></form>
+        <br>
+        <div id="notes"></div>
+        <br>
         </div>
-        <div id="notes">Notes</div>
+        
         {{/each}}   
 </div>
  
 
 
-  

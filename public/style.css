@@ -20,10 +20,8 @@ header{
   margin: 10px;
 }
 
-#oneArtcl, #memo{
-  /* width: 100%; */
+#oneArtcl{ 
   max-width: 980px;
-  /* height: 100%; */
   margin: 0 auto;
   clear: both; 
   border-top: 2px solid #E0E0E0; 
@@ -55,6 +53,15 @@ header{
 }
 
 #notes {
-  float: right;
-  width: 30%;
+  position: absolute;
+  top:45%;
+  right: 39%;
+}
+
+#bodyinput, #titleinput{
+   width: 400px;
+}
+
+#bodyinput{
+height: 150px;
 }

@@ -97,7 +97,10 @@ $(function(){
 $(document).on("click", "#addNote", function() {
   // // Empty the notes from the note section
   $("#notes").empty();
-  // // Save the id from the p tag
+  $("#titleinput").empty();;
+  $("#bodyinput").empty();;
+
+  // // Save the id from the data-id
   var thisId = $(this).attr("data-id");
   
   // Now make an ajax call for the Article
@@ -109,11 +112,11 @@ $(document).on("click", "#addNote", function() {
     .then(function(data) {
       console.log(data);
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h5> Add Note to: " + data.title + " Article </h5>");
       // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
+      $("#notes").append("<input id='titleinput' name='title'><br><br>");
       // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<textarea id='bodyinput' name='body'></textarea> <br><br>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
@@ -126,6 +129,11 @@ $(document).on("click", "#addNote", function() {
       }
     });
 });
+
+
+
+
+
 
 // When you click the savenote button
 $(document).on("click", "#savenote", function() {
@@ -152,6 +160,7 @@ $(document).on("click", "#savenote", function() {
     });
 
   // Also, remove the values entered in the input and textarea for note entry
+  $("#notes").empty();
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
