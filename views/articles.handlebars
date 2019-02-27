@@ -1,39 +1,17 @@
 
- <div id="wrapper">
-     
-     
+ <div id="savedArtcl">
        {{#each saved}}
         <h3>{{this.title}}</h3>
         {{this.excerpt}}
         <h5>{{this.author}}</h5>
         <a href="{{this.link}}" target="_blank"> Read Full Article </a>
-        <button id ="addNote"> Add Notes To Article</button>
+        <button id="addNote" data-id="{{this._id}}">Add Notes To Article</button>
         <form action="/savedartcl/{{this._id}}" method="GET"></form>
         </div>
+        <div id="notes">Notes</div>
         {{/each}}   
 </div>
  
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-   <!-- Modal -->
-  <div id="results-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title"><strong>Best Match</strong></h2>
-        </div>
-        <div class="modal-body">
-          <h2 id="match-name"></h2>
-          <div id="match-img"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
   
