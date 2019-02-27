@@ -16,6 +16,22 @@ var ArticleSchema = new Schema({
     type: String,
     required: false
   },
+  excerpt: {
+    type: String,
+    required: false
+  },
+  author: {
+    type: String,
+    required: false
+  },
+  imageLink: {
+    type: String,
+    required: false
+  },
+  article_id: {
+    type: String,
+    required: false
+  },
   artclsaved: {
 		type: Boolean,
 		default: false

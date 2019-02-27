@@ -5,32 +5,43 @@ $(function(){
     function articleTemplate(newsData){
       var len = newsData.length;
       var preLink = "https://newrepublic.com";
-      for(var i =0; i<2; i++){
-        var articleInfo = $("<div>");
-        // give it an attr value
-        // articleInfo.attr('data-value', newsData[i].article_id);
-        var titre = "titre" + newsData[i].article_id;
 
-        articleInfo = "<div id ='oneArtcl' data-id= " + newsData[i].article_id + ">"+
-        "<div id ='infoArtcl'><h3 id =" + titre + ">" + newsData[i].title +"</h3> <p>" + newsData[i].excerpt + "</p>" +
-        "By " + newsData[i].author + " <br> <a href=" + preLink+ newsData[i].link + " target='_blank'>  Read Full Article</a> </div>" +  
-        "<div id='imgArtcl'> <img src= http://" + newsData[i].image + " width=200px> </div>" +
-        "</div> <br> " +
+      for(var i =0; i<3; i++){
+        //div to contend html 
+        var articleInfo = $("<div>");
+        
+        //formulating id for each element
+        var titleId = "titleId" + newsData[i].article_id;
+        var excerptId = "excerptId" +  newsData[i].article_id;
+        var authorId = "authorId" +  newsData[i].article_id;
+        var imgId =  "imgId" +  newsData[i].article_id;
+        var linkId =  "linkId" +  newsData[i].article_id;
+
+       
+        articleInfo = "<div id ='oneArtcl' data-id= " + newsData[i].article_id + ">" +
+        " <br> <div id ='infoArtcl'><h3 id =" + titleId + ">" + newsData[i].title + 
+        "</h3><p id =" + excerptId + ">" + newsData[i].excerpt + 
+        "<h5 id =" + authorId + "> By " + newsData[i].author + 
+        "<br> <a + id =" + linkId + " href=" + preLink + newsData[i].link + " target='_blank'> Read Full Article</a> </h5></div>" +  
+        "<div id='imgArtcl'> <img id=" + imgId + " src= http://" + newsData[i].imageLink + " width=200px> </div>" +
+        "<br> " +
         "<button id = saveArtcl data-value=" + newsData[i].article_id +"> Save Article</button>" 
-        console.log(articleInfo)
+
+        console.log(articleInfo);
+        //apending articleInfo to html component within index
         $("#articles").append(articleInfo); 
       }
       
-      
+      //<img id='id1' src='one.jpg'>
   }
 
   // get articles from scraping
-    $("#getArticleBtn").on("click", function(event){
-      $("#articles").empty();
-      event.preventDefault();   
-      
+    $("#getArticleBtn").on("click", function(){
+      console.log("hola")
+      $("#articles").empty(); 
       $.get("/scrape", function(newsData) {
         articleTemplate(newsData);
+        // window.location.href = "/scrape";
       });
     });
     
@@ -41,18 +52,24 @@ $(function(){
     // event.preventDefault();
     // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-value");
-    var titre = "#titre" + thisId
 
-    // var t = $(titre).text() ;
-    // console.log(thisId , t);
+   // establish elements to grab as per button id
+    var linkId  = "#linkId" + thisId;
+    var titleId = "#titleId" + thisId;
+    var excerptId = "#excerptId" + thisId;
+    var authorId = "#authorId" + thisId;
+    // var imgId = "#imgId" + thisId;
 
     $.ajax({
       method: "POST",
       url: "/submit/" +  thisId,
       dataType: 'json',
       data: {
-        // title input
-        title: $(titre).text(),
+        link: $(linkId).attr('href'), 
+        title: $(titleId).text(),
+        excerpt: $(excerptId).text(),
+        author: $(authorId).text(),
+        // imageLink: $(imgId).html(),
         artclsaved : true 
       }
     })
@@ -62,12 +79,13 @@ $(function(){
       });
   });
 
-  //save article
+  // get saved articles
   $("#saved").on("click", function(){
     $("#articles").empty();
     $.get("/savedartcl", function(newsData) {
-    console.log(newsData)
-    articleTemplate(newsData);
+      window.location.href = "/savedartcl";
+    // console.log(newsData)
+    // articleTemplate(newsData);
     });
   });
 

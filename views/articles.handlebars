@@ -1,8 +1,16 @@
-   <div id='articles'>
-     <h1>this is the saved article page!!!</h1>
-    {{!-- <ul>
-      {{#each saved}}
-        <li>{{this.id}}. {{this.title}}</li>
-      {{/each}}
-    </ul> --}}
-  </div>
+
+ <div id="wrapper">
+     
+     
+       {{#each saved}}
+        <h3>{{this.title}}</h3>
+        {{this.excerpt}}
+        <h5>{{this.author}}</h5>
+        <a href="{{this.link}}" target="_blank"> Read Full Article </a>
+        <form action="/savedartcl/{{this._id}}" method="GET"></form>
+        </div>
+        {{/each}}   
+</div>
+ 
+
+ 

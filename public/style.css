@@ -4,8 +4,12 @@ header{
   max-width: 980px;
   margin: 0 auto;
   color: #E0E0E0;
-  border: 2px solid #E0E0E0; 
+  border: 2px solid #E0E0E0;  
   text-align: left;
+}
+#wrapper{
+  max-width: 980px;
+  margin: 0 auto;
 }
 #title{
   margin: 10px;
@@ -13,19 +17,29 @@ header{
 #btn{
   margin: 10px;
 }
-#oneArtcl{
+
+#oneArtcl, #memo{
   /* width: 100%; */
   max-width: 980px;
-  max-height: 100;
+  /* height: 100%; */
   margin: 0 auto;
   clear: both; 
-  border: 2px solid #E0E0E0; 
+  border-top: 2px solid #E0E0E0; 
+  
 }
+#memo{
+   max-width: 980px;
+   margin: 0 auto;
+   color: #E0E0E0; 
+}
+
  #imgArtcl{
   width: 40%;
   float: left;
   margin-top: 10px;
 } 
+
+
 #infoArtcl{
   height: 150px;
   float: left;

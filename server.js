@@ -1,25 +1,24 @@
+//dependencies
 var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
 // Our scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
 var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
 var db = require("./models");
 
+//port
 var PORT = 7000;
 
-// Initialize Express
+// initialize Express
 var app = express();
 
 
-// Configure middleware
-
-// Use morgan logger for logging requests
+// configure middleware
+// use morgan logger for logging requests
 app.use(logger("dev"));
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -29,17 +28,18 @@ app.use(express.static("public"));
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/newsFeed", { useNewUrlParser: true });
-
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
+//array to hold scraping result
 var results = [];
+
 // Routes
 app.get("/", function(req, res) {
   res.render("index");
 });
+
 // A GET route for scraping website
 app.get("/scrape", function(req, res) {
   //grab the body of the html with axios
@@ -65,7 +65,7 @@ app.get("/scrape", function(req, res) {
           link:link,
           excerpt:excerpt,
           author:author,
-          image:image["background-image"].replace("url(//", "").replace(")", ""),
+          imageLink:image["background-image"].replace("url(//", "").replace(")", ""),
           article_id: article_id
         }
       );
@@ -76,7 +76,7 @@ app.get("/scrape", function(req, res) {
 });
 
 
-// Route for saving/updating an Article's 
+// submit article route
 app.post("/submit/:id", function(req, res) {
   db.Article.create(req.body)
     .then(function(dbNote) {
@@ -89,18 +89,17 @@ app.post("/submit/:id", function(req, res) {
 });
 
 
-
-//saving article
+//saving article route
 app.get("/savedartcl", function(req, res) {
-  db.Article.find({})
-      .then(function(dbArticle) {
-        // If we were able to successfully find Articles, send them back to the client
-        res.json(dbArticle);
-      })
+	db.Article.find(function(err, data) {
+		if(data.length === 0) {
+			res.render("noArticles", {memo: "You Have Not Saved Any Articles."});
+		}
+		else {
+			res.render("articles", {saved: data});
+		}
+	});
 });
-
-
-
 
 
 
