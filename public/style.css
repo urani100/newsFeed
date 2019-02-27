@@ -33,6 +33,9 @@ header{
    color: #E0E0E0; 
 }
 
+#addNote{
+  margin-left: 20px;
+}
  #imgArtcl{
   width: 40%;
   float: left;
