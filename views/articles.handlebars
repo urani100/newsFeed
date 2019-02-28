@@ -1,8 +1,16 @@
+
+ 	<header>
+		<div id='mainBtn'>
+			<h1>The Republic News Feed</h1>
+       <a href="/"><button id="home">Home</button></a>
+		</div>
+		<div>
+			<img id='logo' src='../../assets/image/logo.png' width=50px> 
+		</div>
+	</header>
+
 {{#each saved}}
 <div id="savedArtcl">
-  <a href="/"><button id="home">Home</button></a>
-  <a href="/savedartcl"><button id="saved">Saved Articles</button></a>
-
   <h3>{{this.title}}</h3>
   {{this.excerpt}}
   <h5>{{this.author}}</h5>

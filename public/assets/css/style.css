@@ -1,8 +1,6 @@
 /* general */
 /* @import url("reset.css"); */
-/* body{
-  background: linear-gradient(#a8d0e6, #e0f4ff, #ffffff, #a8d0e6);
-} */
+
 header {
   max-width: 980px;
   background-color: white;
@@ -30,13 +28,7 @@ header {
 #logo{
   position: absolute;
   top: 7%;
-  right: 49%;
-}
-
-#home{
-  position: absolute;
-  top: 15.5%;
-  right: 49%;
+  right: 51%;
 }
 
 #oneArtcl {
@@ -48,12 +40,22 @@ header {
   padding-bottom: 20px;
   font-family: "Merriweather", serif;
 }
-#memo,
+
 #noScrape {
   max-width: 980px;
   margin: 0 auto;
+  padding: 50px;
+  color: #e0e0e0;
+  font-size: 70px;
+  text-align: center;
+}
+#memo{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 50px;
   color: #e0e0e0;
   font-size: 20px;
+  text-align: center;
 }
 
 #addNote {
@@ -135,6 +137,8 @@ a:hover {
   background-color: #7395ae;
   margin: 10px;
   padding: 10px;
+
+  
 }
 
 #savenote {
@@ -174,4 +178,11 @@ footer {
   background-color: #7395ae;
   border-top: 5px solid white;
   font-family: "Playfair Display", serif;
+}
+
+#getArticleBtn,
+#saveArtcl,
+#saved,
+#home{
+  width: 120px;
 }

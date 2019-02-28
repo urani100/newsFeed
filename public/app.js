@@ -57,12 +57,12 @@ $(function() {
 
   // get articles from scraping
   $("#getArticleBtn").on("click", function() {
-    console.log("hola");
+   
     // $("#articles").empty();
     $("#noScrape").empty();
+  
     $.get("/scrape", function(newsData) {
       articleTemplate(newsData);
-      // window.location.href = "/";
     });
   });
 
