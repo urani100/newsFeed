@@ -111,7 +111,7 @@ app.get("/savedartcl", function(req, res) {
   });
 });
 
-// Route for grabbing a specific Article by id, populate it with it's note
+// Route for grabbing a specific Article by id
 app.get("/savedartcl/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article.findOne({ _id: req.params.id })
@@ -127,6 +127,29 @@ app.get("/savedartcl/:id", function(req, res) {
     });
 });
 
+
+//delete route
+app.delete("/delartcl/:id", function(req, res) {
+  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
+  db.Article.deleteOne({ _id: req.params.id })
+    // ..and populate all of the notes associated with it
+    // .remove("note")
+    .then(function(dbArticle) {
+      // If we were able to successfully find an Article with the given id, send it back to the client
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+
+
+
+
+
+/////////
 //Notes
 
 // Route for grabbing a specific Article by id, populate it with it's note

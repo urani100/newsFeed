@@ -1,16 +1,18 @@
 
  	<header>
-		<div id='mainBtn'>
+     	<div>
+			<img id='logo' src='../../assets/image/logo.png' width=65px> 
+		</div>
+		<div id='mainTitle'>
 			<h1>The Republic News Feed</h1>
        <a href="/"><button id="home">Home</button></a>
 		</div>
-		<div>
-			<img id='logo' src='../../assets/image/logo.png' width=50px> 
-		</div>
+	
 	</header>
 
 {{#each saved}}
 <div id="savedArtcl">
+  <button id="deleteartcl" data-id="{{this._id}}">Delete Aticle</button>
   <h3>{{this.title}}</h3>
   {{this.excerpt}}
   <h5>{{this.author}}</h5>

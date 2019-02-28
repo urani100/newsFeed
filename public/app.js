@@ -105,10 +105,57 @@ $(function() {
     $.get("/savedartcl", function(newsData) {
       window.location.href = "/savedartcl";
       // console.log(newsData)
-      // articleTemplate(newsData);
     });
   });
 });
+
+
+
+/////
+$("#deleteartcl").on("click", function(){
+  var thisId = $(this).attr("data-id");
+  console.log("hola");
+  // $.ajax({
+  //   type: "DELETE",
+  //   url: "/articles/" + thisId
+  // });
+
+})
+
+
+$(document).on("click", "#deleteartcl", function() { 
+  //Save the id from the data-id
+  var thisId = $(this).attr("data-id");
+
+  console.log(thisId);
+
+  // Now make an ajax call to delete Article
+  $.ajax({
+    method: "DELETE",
+    url: "/delartcl/" + thisId
+  })
+   
+    .then(function(data) {
+      console.log(data);
+      // If there's a note in the article empty it( delete as well)
+      if (data.note) {
+        // Place the title of the note in the title input
+        $("#titleinput").val("deleted");
+        // Place the body of the note in the body textarea
+        $("#bodyinput").val("Note deleted");
+      }
+    });
+    // empty article div
+    $("#savedArtcl").empty();
+});
+
+
+
+
+
+
+
+/////
 
 //Notes
 // Whenever someone clicks  add notes
