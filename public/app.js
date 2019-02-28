@@ -1,4 +1,3 @@
-// Grab the articles as a json
 
 $(function(){
 
@@ -52,6 +51,7 @@ $(function(){
     // event.preventDefault();
     // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-value");
+    
 
    // establish elements to grab as per button id
     var linkId  = "#linkId" + thisId;
@@ -59,6 +59,8 @@ $(function(){
     var excerptId = "#excerptId" + thisId;
     var authorId = "#authorId" + thisId;
     // var imgId = "#imgId" + thisId;
+
+    console.log(authorId);
 
     $.ajax({
       method: "POST",
@@ -95,12 +97,10 @@ $(function(){
 //Notes
 // Whenever someone clicks  add notes
 $(document).on("click", "#addNote", function() {
-  // // Empty the notes from the note section
+  // Empty the notes from the note section
   $("#notes").empty();
-  $("#titleinput").empty();;
-  $("#bodyinput").empty();;
-
-  // // Save the id from the data-id
+  
+  //Save the id from the data-id
   var thisId = $(this).attr("data-id");
   
   // Now make an ajax call for the Article
@@ -112,9 +112,9 @@ $(document).on("click", "#addNote", function() {
     .then(function(data) {
       console.log(data);
       // The title of the article
-      $("#notes").append("<h5> Add Note to: " + data.title + " Article </h5>");
+      $("#notes").append("<h5 id= notetitle>Add Note: " + data.title + "</h5>");
       // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title'><br><br>");
+      $("#notes").append("<input id='titleinput' name='title' value = 'Title'><br><br>");
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea> <br><br>");
       // A button to submit a new note, with the id of the article saved to it
@@ -129,9 +129,6 @@ $(document).on("click", "#addNote", function() {
       }
     });
 });
-
-
-
 
 
 

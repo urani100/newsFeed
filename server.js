@@ -11,7 +11,7 @@ var cheerio = require("cheerio");
 var db = require("./models");
 
 //port
-var PORT = 7000;
+var PORT = process.env.PORT || 8080;
 
 // initialize Express
 var app = express();
@@ -27,23 +27,30 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/newsFeed", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/newsFeed", { useNewUrlParser: true });
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsFeed";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-//array to hold scraping result
+//array to hold scraping results
 var results = [];
 
 // Routes
+
+//default route
 app.get("/", function(req, res) {
   res.render("index");
 });
 
-// A GET route for scraping website
+// get route for scraping website
 app.get("/scrape", function(req, res) {
-  //grab the body of the html with axios
 
+  //grab the body of the html with axios
   axios.get("https://newrepublic.com/").then(function(response) {
 
     //load that into cheerio and save it to $ for a shorthand selector
@@ -118,10 +125,9 @@ app.get("/savedartcl/:id", function(req, res) {
     });
 });
 
-///////////////////////////////////////////////////////////////////////
+
 
 //Notes
-
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
@@ -161,9 +167,8 @@ app.post("/articles/:id", function(req, res) {
 });
 
 
-///////////////////////////////////////////////////////////////////////
 
-// Start the server
+// start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
 });

@@ -25,7 +25,8 @@ header{
   margin: 0 auto;
   clear: both; 
   border-top: 2px solid #E0E0E0; 
-  padding-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   
 }
 #memo{
@@ -54,14 +55,38 @@ header{
 
 #notes {
   position: absolute;
-  top:45%;
+  top: 25%;
   right: 39%;
+  background-color: #E0E0E0; 
+}
+#savenote{
+margin:8px;
+}
+#notetitle{
+  margin:8px;
+  color:black
 }
 
 #bodyinput, #titleinput{
-   width: 400px;
+   width: 500px;
 }
-
+#titleinput{
+  height: 25px;
+}
 #bodyinput{
 height: 150px;
+}
+
+a:link {
+  text-decoration: none;
+  color:black
+}
+
+a:visited {
+  text-decoration: none;
+  color:black
+}
+
+a:hover{
+  color:#E0E0E0; 
 }
