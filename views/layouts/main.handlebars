@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-		{{!-- <link rel="stylesheet" href="/css/burger_style.css" type="text/css" /> --}}
-		<title>NEWS FEED</title>
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="app.js"></script>
-	</head>
-	<body>
-		
-		 <header>
-			 <h1>The Republic News Feed</h1> 
-       		 <div id ='btn'>
-					{{!-- <a href="/"><button id="getArticleBtn">Get Articles</button></a> --}}
-					<button id ="getArticleBtn">Get Articles</button>
-					<a href="/savedartcl"><button id="saved">Saved Articles</button></a>
-        	</div> 
-      </header>  
-		{{{ body }}}
-	</body>
-</html>
+	{{!-- <link rel="stylesheet" href="/css/burger_style.css" type="text/css" /> --}}
+	<title>NEWS FEED</title>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+	{{!-- <link rel="stylesheet" type="text/css" href="style.css"> --}}
+	<script src="app.js"></script>
+</head>
 
+<body>
+	<header>
+		
+		<div id='mainBtn'>
+			<h1>The Republic News Feed</h1>
+				
+		</div>
+		<div>
+			<img id='logo' src='../../assets/image/logo.png' width=50px> </div>
+		</div>
+	</header>
+	{{{ body }}}
+	{{!-- <footer>&copy; Urani</footer> --}}
+</body>
+
+</html>

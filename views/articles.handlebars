@@ -1,20 +1,16 @@
-
- {{#each saved}}
+{{#each saved}}
 <div id="savedArtcl">
-  
-    <h3>{{this.title}}</h3>
-    {{this.excerpt}}
-    <h5>{{this.author}}</h5>
-    <a href="{{this.link}}" target="_blank"> Read Full Article </a>
-    <button id="addNote" data-id="{{this._id}}">Add Notes To Article</button>
-    <form action="/savedartcl/{{this._id}}" method="GET"></form>
-    <br>
-    <div id="notes"></div>
-    <br>
-  </div>
-{{/each}}   
+  <a href="/"><button id="home">Home</button></a>
+  <a href="/savedartcl"><button id="saved">Saved Articles</button></a>
 
-
- 
-
-
+  <h3>{{this.title}}</h3>
+  {{this.excerpt}}
+  <h5>{{this.author}}</h5>
+  <a href="{{this.link}}" target="_blank"> Read Full Article </a>
+  <button id="addNote" data-id="{{this._id}}">Add Notes To Article</button>
+  <form action="/savedartcl/{{this._id}}" method="GET"></form>
+  <br>
+  <div id="notes"></div>
+  <br>
+</div>
+{{/each}}

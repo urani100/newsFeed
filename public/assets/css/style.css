@@ -1,0 +1,177 @@
+/* general */
+/* @import url("reset.css"); */
+/* body{
+  background: linear-gradient(#a8d0e6, #e0f4ff, #ffffff, #a8d0e6);
+} */
+header {
+  max-width: 980px;
+  background-color: white;
+  padding: 20px;
+  margin: 0 auto;
+  color: #7395ae;
+  border: 2px solid #a9b7c0;
+  text-align: left;
+  font-family: "Merriweather", serif;
+}
+#savedArtcl {
+  max-width: 980px;
+  margin: 0 auto;
+  border-bottom: 2px solid #7395ae;
+  padding: 10px;
+  font-family: "Merriweather", serif;
+}
+#title {
+  margin: 10px;
+}
+#mainBtn {
+  margin: 30px;
+  width: 50%;
+}
+#logo{
+  position: absolute;
+  top: 7%;
+  right: 49%;
+}
+
+#home{
+  position: absolute;
+  top: 15.5%;
+  right: 49%;
+}
+
+#oneArtcl {
+  max-width: 980px;
+  margin: 0 auto;
+  clear: both;
+  border-top: 2px solid #7395ae;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: "Merriweather", serif;
+}
+#memo,
+#noScrape {
+  max-width: 980px;
+  margin: 0 auto;
+  color: #e0e0e0;
+  font-size: 20px;
+}
+
+#addNote {
+  margin-left: 20px;
+}
+#imgArtcl {
+  width: 40%;
+  float: left;
+  margin-top: 10px;
+}
+
+#infoArtcl {
+  height: 180px;
+  float: left;
+  width: 49%;
+}
+
+#notes {
+  position: absolute;
+  top: 25%;
+  right: 39%;
+  background-color: #7395ae;
+}
+
+#notetitle {
+  margin: 10px;
+  padding: 10px;
+  color: white;
+}
+
+#bodyinput,
+#titleinput {
+  width: 500px;
+}
+#titleinput {
+  height: 25px;
+}
+#bodyinput {
+  height: 150px;
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #7395ae;
+}
+
+#getArticleBtn,
+#saveArtcl,
+#saved,
+#addNote,
+#home{
+  /* default for <button>, but useful for <a> */
+  font-family: "Merriweather", serif;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  /* create a small space when buttons wrap on 2 lines */
+  margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px transparent;
+  border-radius: 4px;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: white;
+  background-color: #7395ae;
+  margin: 10px;
+  padding: 10px;
+}
+
+#savenote {
+  font-family: "Merriweather", serif;
+  /* default for <button>, but useful for <a> */
+  margin: 20px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  /* create a small space when buttons wrap on 2 lines */
+  margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px transparent;
+  border-radius: 4px;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: #7395ae;
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+}
+
+footer {
+  text-align: center;
+  width: 99.99%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  color: white;
+  font-size: 14px;
+  background-color: #7395ae;
+  border-top: 5px solid white;
+  font-family: "Playfair Display", serif;
+}
