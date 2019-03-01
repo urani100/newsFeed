@@ -11,4 +11,3 @@ The newFeed App alows users view and leave comments on the latest news, which is
 
 Users are also able to leave comments on the articles displayed and revisit them later. The comments should be saved to the database as well and associated with their articles. Users should also be able to delete comments left on articles. All stored comments should be visible to every user. The app is deloyed on [Heroku](https://intense-tundra-42703.herokuapp.com)
 
-### Functionality
