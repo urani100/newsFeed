@@ -68,7 +68,7 @@ $(function() {
 
   //save an article
   $(document).on("click", "#saveArtcl", function() {
-    // event.preventDefault();
+   
     // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-value");
 
@@ -78,8 +78,6 @@ $(function() {
     var excerptId = "#excerptId" + thisId;
     var authorId = "#authorId" + thisId;
     // var imgId = "#imgId" + thisId;
-
-    console.log(authorId);
 
     $.ajax({
       method: "POST",
@@ -104,38 +102,22 @@ $(function() {
     $("#articles").empty();
     $.get("/savedartcl", function(newsData) {
       window.location.href = "/savedartcl";
-      // console.log(newsData)
     });
   });
 });
 
 
 
-/////
-$("#deleteartcl").on("click", function(){
-  var thisId = $(this).attr("data-id");
-  console.log("hola");
-  // $.ajax({
-  //   type: "DELETE",
-  //   url: "/articles/" + thisId
-  // });
-
-})
-
-
+//delete article
 $(document).on("click", "#deleteartcl", function() { 
   //Save the id from the data-id
   var thisId = $(this).attr("data-id");
-
-  console.log(thisId);
 
   // Now make an ajax call to delete Article
   $.ajax({
     method: "DELETE",
     url: "/delartcl/" + thisId
-  })
-   
-    .then(function(data) {
+  }).then(function(data) {
       console.log(data);
       // If there's a note in the article empty it( delete as well)
       if (data.note) {
@@ -147,18 +129,13 @@ $(document).on("click", "#deleteartcl", function() {
     });
     // empty article div
     $("#savedArtcl").empty();
+    
 });
 
 
 
 
-
-
-
-/////
-
-//Notes
-// Whenever someone clicks  add notes
+// add notes to an article
 $(document).on("click", "#addNote", function() {
   // Empty the notes from the note section
   $("#notes").empty();
@@ -173,7 +150,8 @@ $(document).on("click", "#addNote", function() {
   })
     // With that done, add the note information to the page
     .then(function(data) {
-      console.log(data);
+        $("#notes").append("<button id='reduceNote' >-</button>");
+       
       // The title of the article
       $("#notes").append("<h5 id= notetitle>Add Note: " + data.title + "</h5>");
       // An input to enter a new title
@@ -197,7 +175,7 @@ $(document).on("click", "#addNote", function() {
     });
 });
 
-// When you click the savenote button
+// save a note 
 $(document).on("click", "#savenote", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
@@ -217,8 +195,6 @@ $(document).on("click", "#savenote", function() {
     .then(function(data) {
       // Log the response
       console.log(data);
-      // Empty the notes section
-      $("#notes").empty();
     });
 
   // Also, remove the values entered in the input and textarea for note entry
@@ -226,3 +202,11 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+
+
+$(document).on("click", "#reduceNote", function() { 
+  //empty notes 
+  $("#notes").empty();
+});
+

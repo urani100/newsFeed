@@ -25,14 +25,13 @@ header {
   margin: 40px;
   width: 50%;
 }
-#logo{
+#logo {
   position: absolute;
   top: 3%;
   right: 16%;
   padding: 5px;
   border: 0.5px solid #e0e0e0;
   border-radius: 50%;
-  
 }
 
 #oneArtcl {
@@ -53,7 +52,7 @@ header {
   font-size: 70px;
   text-align: center;
 }
-#memo{
+#memo {
   max-width: 980px;
   margin: 0 auto;
   padding: 50px;
@@ -88,14 +87,18 @@ header {
   margin: 10px;
   padding: 10px;
   color: white;
+  font-family: "Merriweather", serif;
 }
 
 #bodyinput,
 #titleinput {
   width: 500px;
+  margin: 15px;
+  border: 2px solid #e0e0e0;
+  font-family: "Merriweather", serif;
 }
 #titleinput {
-  height: 25px;
+  height: 15px;
 }
 #bodyinput {
   height: 150px;
@@ -119,7 +122,7 @@ a:hover {
 #saveArtcl,
 #saved,
 #addNote,
-#home{
+#home {
   /* default for <button>, but useful for <a> */
   font-family: "Merriweather", serif;
   display: inline-block;
@@ -141,12 +144,12 @@ a:hover {
   background-color: #7395ae;
   margin: 10px;
   padding: 10px;
-
   border: 2px solid #e0e0e0;
 }
 
 #savenote,
-#deleteartcl {
+#deleteartcl,
+#deleNote {
   font-family: "Merriweather", serif;
   /* default for <button>, but useful for <a> */
   margin: 20px;
@@ -173,7 +176,7 @@ a:hover {
   border: 2px solid #7395ae;
 }
 
-footer {
+/* footer {
   text-align: center;
   width: 99.99%;
   position: absolute;
@@ -185,11 +188,34 @@ footer {
   background-color: #7395ae;
   border-top: 5px solid white;
   font-family: "Playfair Display", serif;
+} */
+#savenote {
+  width: 100px;
+  border: 2px solid #e0e0e0;
+}
+
+#deleNote {
+  width: 40px;
+  border: 2px solid #e0e0e0;
+  margin-left: 500px;
+}
+
+
+#reduceNote {
+  width: 40px;
+  height: 35px;
+  border: 2px solid #e0e0e0;
+  margin: 10px 0 0 480px;
+  font-weight: bold;
+  
+}
+#deleteartcl {
+  margin-left: 820px;
 }
 
 #getArticleBtn,
 #saveArtcl,
 #saved,
-#home{
+#home {
   width: 120px;
 }

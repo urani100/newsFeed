@@ -38,6 +38,27 @@ app.set("view engine", "handlebars");
 //array to hold scraping results
 var results = [];
 
+//shuffle array function
+function shuffle(array) {
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 // Routes
 
 //default route
@@ -84,6 +105,10 @@ app.get("/scrape", function(req, res) {
         article_id: article_id
       });
     });
+    //shuffle array to et diffrent results
+    shuffle(results);
+
+    //return json
     res.json(results);
   });
 });
@@ -111,7 +136,7 @@ app.get("/savedartcl", function(req, res) {
   });
 });
 
-// Route for grabbing a specific Article by id
+// saving an article
 app.get("/savedartcl/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article.findOne({ _id: req.params.id })
@@ -127,13 +152,10 @@ app.get("/savedartcl/:id", function(req, res) {
     });
 });
 
-
-//delete route
+//route to delete article
 app.delete("/delartcl/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article.deleteOne({ _id: req.params.id })
-    // ..and populate all of the notes associated with it
-    // .remove("note")
     .then(function(dbArticle) {
       // If we were able to successfully find an Article with the given id, send it back to the client
       res.json(dbArticle);
@@ -146,11 +168,6 @@ app.delete("/delartcl/:id", function(req, res) {
 
 
 
-
-
-
-/////////
-//Notes
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
@@ -168,7 +185,7 @@ app.get("/articles/:id", function(req, res) {
     });
 });
 
-// Route for saving/updating an Article's associated Note
+// saving/updating a note
 app.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
   db.Note.create(req.body)
